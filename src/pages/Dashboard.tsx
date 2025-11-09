@@ -112,7 +112,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold mb-2">Ads Dashboard</h1>
-          <p className="text-muted-foreground mb-8">Search for SaaS brands and analyze their ad strategies</p>
+          <p className="text-muted-foreground mb-8">Search for SaaS brands & analyze their ad strategies</p>
 
           <div className="flex gap-2 mb-8">
             <Input
