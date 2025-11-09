@@ -183,11 +183,3 @@ This project does not include a license file in the repository. If you'd like to
 
 ---
 
-If you'd like, I can:
-
-- Add a short `SUPABASE_SETUP.md` with exact SQL migrations and a checklist for the Supabase dashboard.
-- Add a `CONTRIBUTING.md` and a `CODE_OF_CONDUCT.md`.
-- Add basic tests (Jest / Vitest) and 1–2 unit tests to validate mockAds search and the analyze function parser.
-
-Tell me which follow-up you prefer and I'll add it next.
-
