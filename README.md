@@ -1,3 +1,17 @@
+# Welcome to your Lovable project
+
+## Project info
+
+**URL**: https://lovable.dev/projects/8084ffde-68c8-42d8-8e4d-22fac0924258
+
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/8084ffde-68c8-42d8-8e4d-22fac0924258) and start prompting. Changes made via Lovable will be committed automatically to this repo.
+
 # AdSpy AI — Ad analysis & variation generator for SaaS
 
 AdSpy AI (AdSpy for SaaS) helps marketers and product teams analyze SaaS ad creatives and generate new ad variations with AI.
