@@ -180,6 +180,3 @@ Small & safe ways to help:
 ## License
 
 This project does not include a license file in the repository. If you'd like to add one, consider MIT or Apache-2.0 depending on your needs.
-
----
-
