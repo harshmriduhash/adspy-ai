@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      saved_ads: {
+        Row: {
+          ad_text: string
+          analysis: string
+          brand: string
+          created_at: string
+          cta: string
+          id: string
+          img_url: string | null
+          platform: string
+          variations: Json
+        }
+        Insert: {
+          ad_text: string
+          analysis: string
+          brand: string
+          created_at?: string
+          cta: string
+          id?: string
+          img_url?: string | null
+          platform: string
+          variations: Json
+        }
+        Update: {
+          ad_text?: string
+          analysis?: string
+          brand?: string
+          created_at?: string
+          cta?: string
+          id?: string
+          img_url?: string | null
+          platform?: string
+          variations?: Json
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
