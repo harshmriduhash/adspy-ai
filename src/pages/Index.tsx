@@ -32,7 +32,7 @@ export default function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             How It Works
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6 rounded-xl border border-border bg-card-gradient hover:border-primary/50 transition-colors">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
