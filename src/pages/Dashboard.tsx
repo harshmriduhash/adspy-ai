@@ -37,7 +37,7 @@ export default function Dashboard() {
     setSelectedAd(null);
     setAnalysis("");
     setVariations([]);
-    
+
     if (results.length === 0) {
       toast.info("No ads found for this brand");
     }
@@ -108,7 +108,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold mb-2">Ads Dashboard</h1>
