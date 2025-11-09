@@ -20,11 +20,11 @@ Deno.serve(async (req) => {
       );
     }
 
-    const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
-    if (!openAIApiKey) {
-      console.error('OPENAI_API_KEY is not configured');
+    const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
+    if (!lovableApiKey) {
+      console.error('LOVABLE_API_KEY is not configured');
       return new Response(
-        JSON.stringify({ error: 'OpenAI API key not configured' }),
+        JSON.stringify({ error: 'AI service not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -45,15 +45,15 @@ Provide a detailed analysis covering:
 
 Keep the analysis concise but insightful (150-200 words).`;
 
-    console.log('Sending analysis request to OpenAI...');
-    const analysisResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    console.log('Sending analysis request to Lovable AI...');
+    const analysisResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
+        'Authorization': `Bearer ${lovableApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-5-mini-2025-08-07',
+        model: 'google/gemini-2.5-flash',
         messages: [
           { 
             role: 'system', 
@@ -61,14 +61,13 @@ Keep the analysis concise but insightful (150-200 words).`;
           },
           { role: 'user', content: analysisPrompt }
         ],
-        max_completion_tokens: 500,
       }),
     });
 
     if (!analysisResponse.ok) {
       const errorText = await analysisResponse.text();
-      console.error('OpenAI analysis error:', analysisResponse.status, errorText);
-      throw new Error(`OpenAI API error: ${analysisResponse.status}`);
+      console.error('Lovable AI analysis error:', analysisResponse.status, errorText);
+      throw new Error(`AI service error: ${analysisResponse.status}`);
     }
 
     const analysisData = await analysisResponse.json();
@@ -89,14 +88,14 @@ Generate 3 variations that:
 Format: Return ONLY the 3 ad copies, numbered 1-3, with each variation on a new line. Each variation should be 1-2 sentences max.`;
 
     console.log('Generating variations...');
-    const variationsResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const variationsResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
+        'Authorization': `Bearer ${lovableApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-5-mini-2025-08-07',
+        model: 'google/gemini-2.5-flash',
         messages: [
           { 
             role: 'system', 
@@ -104,14 +103,13 @@ Format: Return ONLY the 3 ad copies, numbered 1-3, with each variation on a new 
           },
           { role: 'user', content: variationsPrompt }
         ],
-        max_completion_tokens: 400,
       }),
     });
 
     if (!variationsResponse.ok) {
       const errorText = await variationsResponse.text();
-      console.error('OpenAI variations error:', variationsResponse.status, errorText);
-      throw new Error(`OpenAI API error: ${variationsResponse.status}`);
+      console.error('Lovable AI variations error:', variationsResponse.status, errorText);
+      throw new Error(`AI service error: ${variationsResponse.status}`);
     }
 
     const variationsData = await variationsResponse.json();

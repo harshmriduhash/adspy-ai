@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,11 @@ import { Search, Sparkles, Loader2, Save } from "lucide-react";
 import { searchAds, type AdData } from "@/lib/mockAds";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const { user, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<AdData[]>([]);
   const [selectedAd, setSelectedAd] = useState<AdData | null>(null);
@@ -16,6 +20,12 @@ export default function Dashboard() {
   const [variations, setVariations] = useState<string[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/auth');
+    }
+  }, [user, authLoading, navigate]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
@@ -58,7 +68,7 @@ export default function Dashboard() {
   };
 
   const handleSave = async () => {
-    if (!selectedAd || !analysis) {
+    if (!selectedAd || !analysis || !user) {
       toast.error("No analysis to save");
       return;
     }
@@ -66,6 +76,7 @@ export default function Dashboard() {
     setIsSaving(true);
     try {
       const { error } = await supabase.from('saved_ads').insert({
+        user_id: user.id,
         brand: selectedAd.brand,
         platform: selectedAd.platform,
         ad_text: selectedAd.ad_text,
@@ -85,6 +96,14 @@ export default function Dashboard() {
       setIsSaving(false);
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">

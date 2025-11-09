@@ -1,9 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
-import { Search, BookmarkCheck } from "lucide-react";
+import { Search, BookmarkCheck, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
   const location = useLocation();
+  const { user, signOut } = useAuth();
   
   return (
     <nav className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
@@ -13,7 +21,7 @@ export const Navigation = () => {
             AdSpy for SaaS
           </Link>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <Button
               variant={location.pathname === "/dashboard" ? "default" : "ghost"}
               asChild
@@ -33,6 +41,26 @@ export const Navigation = () => {
                 Saved
               </Link>
             </Button>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <User className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={signOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" asChild>
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>
