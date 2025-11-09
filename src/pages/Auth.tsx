@@ -25,7 +25,7 @@ export default function Auth() {
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
-        
+
         // Redirect to dashboard if logged in
         if (session?.user) {
           navigate('/dashboard');
@@ -37,7 +37,7 @@ export default function Auth() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
         navigate('/dashboard');
       }
@@ -48,7 +48,7 @@ export default function Auth() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       toast.error("Please fill in all fields");
       return;
@@ -63,7 +63,7 @@ export default function Auth() {
 
     try {
       const redirectUrl = `${window.location.origin}/dashboard`;
-      
+
       const { error } = await supabase.auth.signUp({
         email,
         password,
@@ -97,7 +97,7 @@ export default function Auth() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       toast.error("Please fill in all fields");
       return;
@@ -136,8 +136,8 @@ export default function Auth() {
             {isSignUp ? "Create Account" : "Sign In"}
           </CardTitle>
           <CardDescription className="text-center">
-            {isSignUp 
-              ? "Sign up to start analyzing SaaS ads" 
+            {isSignUp
+              ? "Sign up to start analyzing SaaS ads"
               : "Welcome back! Sign in to continue"}
           </CardDescription>
         </CardHeader>
@@ -155,7 +155,7 @@ export default function Auth() {
                 />
               </div>
             )}
-            
+
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -167,7 +167,7 @@ export default function Auth() {
                 required
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -181,9 +181,9 @@ export default function Auth() {
               />
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full" 
+            <Button
+              type="submit"
+              className="w-full"
               disabled={isLoading}
             >
               {isLoading ? (
