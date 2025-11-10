@@ -31,7 +31,7 @@ export default function Index() {
           </div>
 
           <h1 className="text-7xl font-bold gradient-text animate-fade-in leading-tight">
-            AdSpy
+            AdSpy for SaaS
           </h1>
 
           <p
