@@ -23,7 +23,7 @@ export default function Index() {
           </div>
           
           <h1 className="text-7xl font-bold gradient-text animate-fade-in leading-tight">
-            AdSpy for SaaS
+            AdSpy
           </h1>
           
           <p className="text-2xl text-muted-foreground max-w-3xl mx-auto animate-fade-in leading-relaxed" style={{ animationDelay: '0.1s' }}>
