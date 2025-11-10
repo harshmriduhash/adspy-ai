@@ -12,15 +12,18 @@ import {
 export const Navigation = () => {
   const location = useLocation();
   const { user, signOut } = useAuth();
-  
+
   return (
     <nav className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold bg-hero-gradient bg-clip-text text-transparent">
+          <Link
+            to="/"
+            className="text-2xl font-bold bg-hero-gradient bg-clip-text text-transparent"
+          >
             AdSpy
           </Link>
-          
+
           <div className="flex gap-2 items-center">
             <Button
               variant={location.pathname === "/dashboard" ? "default" : "ghost"}
@@ -31,7 +34,7 @@ export const Navigation = () => {
                 Dashboard
               </Link>
             </Button>
-            
+
             <Button
               variant={location.pathname === "/saved" ? "default" : "ghost"}
               asChild
