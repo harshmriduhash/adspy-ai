@@ -193,14 +193,14 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div className="flex gap-2">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     onClick={() => setSelectedForComparison([])}
                   >
                     Clear
                   </Button>
-                  <Button 
+                  <Button
                     size="sm"
                     onClick={handleCompare}
                     disabled={selectedForComparison.length < 2}
@@ -219,15 +219,14 @@ export default function Dashboard() {
               {searchResults.map((ad, index) => {
                 const isSelected = selectedForComparison.some(a => a.brand === ad.brand && a.ad_text === ad.ad_text);
                 return (
-                  <Card 
-                    key={index} 
-                    className={`overflow-hidden card-hover cursor-pointer bg-card/50 backdrop-blur-sm border-border/50 ${
-                      isSelected ? 'ring-2 ring-accent shadow-[0_0_30px_rgba(6,182,212,0.4)]' : ''
-                    }`}
+                  <Card
+                    key={index}
+                    className={`overflow-hidden card-hover cursor-pointer bg-card/50 backdrop-blur-sm border-border/50 ${isSelected ? 'ring-2 ring-accent shadow-[0_0_30px_rgba(6,182,212,0.4)]' : ''
+                      }`}
                   >
                     <div className="relative">
                       <img src={ad.img_url} alt={ad.brand} className="w-full h-48 object-cover" />
-                      <div 
+                      <div
                         className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm rounded-lg p-2 cursor-pointer hover:bg-background transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
@@ -250,9 +249,9 @@ export default function Dashboard() {
                       <CardDescription className="line-clamp-2">{ad.ad_text}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Button 
-                        size="sm" 
-                        className="w-full shadow-[0_0_15px_rgba(147,51,234,0.3)]" 
+                      <Button
+                        size="sm"
+                        className="w-full shadow-[0_0_15px_rgba(147,51,234,0.3)]"
                         onClick={(e) => { e.stopPropagation(); handleAnalyze(ad); }}
                       >
                         <Sparkles className="w-4 h-4 mr-2" />
@@ -302,10 +301,10 @@ export default function Dashboard() {
                     AI Analysis: {selectedAd.brand}
                   </span>
                   {analysis && (
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={handleSave} 
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleSave}
                       disabled={isSaving}
                       className="shadow-[0_0_15px_rgba(147,51,234,0.3)]"
                     >
