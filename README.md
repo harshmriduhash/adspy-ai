@@ -33,6 +33,15 @@ This repository contains a Vite + React front-end built with TypeScript and shad
 - Auth-backed saving of analyzed ads to Supabase (`saved_ads` table expected).
 - Clean UI built with shadcn-ui components and Tailwind CSS.
 
+### What's new (recent changes)
+
+- Compare multiple ads (2–3) with an AI-powered comparison flow. Select ads in the Dashboard using the checkbox on each card, then click "Compare Now" to generate a side-by-side analysis and recommendations. The UI limits comparisons to a maximum of 3 ads.
+- A new serverless function `compare-ads` lives in `supabase/functions/compare-ads` — it accepts a POST body of `{ ads: [...] }` and returns a detailed comparative analysis (rankings, strengths, weaknesses, messaging strategy, audience, and recommendations).
+- Visual and UX polish on the Dashboard: animated background blobs, improved card hover states, and in-card selection badges for comparison.
+- Selection workflow: you can select multiple ads (up to 3), clear selections, and trigger an AI comparison. The selection UI shows the current count and disables "Compare Now" until at least 2 ads are selected.
+
+These changes were added to improve multi-ad analysis and make it easier to derive actionable insights across competing creatives.
+
 ## Tech stack
 
 - Frontend: Vite + React + TypeScript
